@@ -9,6 +9,13 @@ public class Membro {
 
     public Membro() {}
 
+    public Membro(String nome, int periodo, String curso, int categoriaId) {
+        this.nome = nome;
+        this.periodo = periodo;
+        this.curso = curso;
+        this.categoriaId = categoriaId;
+    }
+
     public Membro(int id, String nome, int periodo, String curso, int categoriaId) {
         this.id = id;
         this.nome = nome;

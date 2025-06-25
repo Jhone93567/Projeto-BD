@@ -8,6 +8,12 @@ public class Competicao {
 
     public Competicao() {}
 
+    public Competicao(String nome, String lugar, String data) {
+        this.nome = nome;
+        this.lugar = lugar;
+        this.data = data;
+    }
+
     public Competicao(int id, String nome, String lugar, String data) {
         this.id = id;
         this.nome = nome;

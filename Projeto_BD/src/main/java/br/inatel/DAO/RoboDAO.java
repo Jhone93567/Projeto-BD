@@ -1,5 +1,6 @@
 package br.inatel.DAO;
 
+import br.inatel.Model.Capitao;
 import br.inatel.Model.Robo;
 
 import java.sql.SQLException;
@@ -88,5 +89,29 @@ public class RoboDAO extends ConnectionDAO {
         }
 
         return lista;
+    }
+
+    public Robo selectById(int id) {
+        connectToDb();
+        Robo c = null;
+
+        String sql = "SELECT * FROM Robos WHERE id = ?";
+
+        try{
+            pst = con.prepareStatement(sql);
+            pst.setInt(1,id);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                c = new Robo(
+                        rs.getInt("id"),
+                        rs.getString("Nome"),
+                        rs.getInt("Categorias_id")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar por ID" + e.getMessage());
+        }
+
+        return c;
     }
 }

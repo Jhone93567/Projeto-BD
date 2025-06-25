@@ -7,6 +7,11 @@ public class Robo {
 
     public Robo() {}
 
+    public Robo(String nome, int categoriaId) {
+        this.nome = nome;
+        this.categoriaId = categoriaId;
+    }
+
     public Robo(int id, String nome, int categoriaId) {
         this.id = id;
         this.nome = nome;

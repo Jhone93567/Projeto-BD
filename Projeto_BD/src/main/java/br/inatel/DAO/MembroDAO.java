@@ -1,5 +1,6 @@
 package br.inatel.DAO;
 
+import br.inatel.Model.Capitao;
 import br.inatel.Model.Membro;
 
 import java.sql.SQLException;
@@ -94,5 +95,32 @@ public class MembroDAO extends ConnectionDAO {
         }
 
         return lista;
+    }
+
+    public Membro selectById(int id) {
+        connectToDb();
+        Membro c = null;
+
+        String sql = "SELECT * FROM Membros WHERE id = ?";
+
+        try{
+            pst = con.prepareStatement(sql);
+            pst.setInt(1,id);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                c = new Membro(
+                        rs.getInt("id"),
+                        rs.getString("Nome"),
+                        rs.getInt("Periodo"),
+                        rs.getString("Curso"),
+                        rs.getInt("categoriaId")
+
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar por ID" + e.getMessage());
+        }
+
+        return c;
     }
 }

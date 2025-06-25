@@ -86,4 +86,27 @@ public class CapitaoDAO extends ConnectionDAO {
 
         return lista;
     }
+
+    public Capitao selectById(int id) {
+        connectToDb();
+        Capitao c = null;
+
+        String sql = "SELECT * FROM Capitães WHERE id = ?";
+        
+        try{
+            pst = con.prepareStatement(sql);
+            pst.setInt(1,id);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                c = new Capitao(
+                        rs.getInt("id"),
+                        rs.getString("Nome")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar por ID" + e.getMessage());
+        }
+
+        return c;
+    }
 }

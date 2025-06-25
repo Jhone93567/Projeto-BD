@@ -48,7 +48,7 @@ public class CompeticaoCategoriaDAO extends ConnectionDAO {
         connectToDb();
         List<String> lista = new ArrayList<>();
 
-        String sql = "SELECT Competições_id, Categorias_id FROM Competições_has_Categorias";
+        String sql = "SELECT * FROM Competições_has_Categorias";
 
         try {
             st = con.createStatement();

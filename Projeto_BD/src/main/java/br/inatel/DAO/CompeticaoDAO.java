@@ -1,5 +1,6 @@
 package br.inatel.DAO;
 
+import br.inatel.Model.Capitao;
 import br.inatel.Model.Competicao;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -90,5 +91,30 @@ public class CompeticaoDAO extends ConnectionDAO {
         }
 
         return lista;
+    }
+
+    public Competicao selectById(int id) {
+        connectToDb();
+        Competicao c = null;
+
+        String sql = "SELECT * FROM Competições WHERE id = ?";
+
+        try{
+            pst = con.prepareStatement(sql);
+            pst.setInt(1,id);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                c = new Competicao(
+                        rs.getInt("id"),
+                        rs.getString("Nome"),
+                        rs.getString("Lugar"),
+                        rs.getString("Data")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar por ID" + e.getMessage());
+        }
+
+        return c;
     }
 }

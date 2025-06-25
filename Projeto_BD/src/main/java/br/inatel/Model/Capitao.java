@@ -6,6 +6,10 @@ public class Capitao {
 
     public Capitao() {}
 
+    public Capitao(String nome) {
+        this.nome = nome;
+    }
+
     public Capitao(int id, String nome) {
         this.id = id;
         this.nome = nome;

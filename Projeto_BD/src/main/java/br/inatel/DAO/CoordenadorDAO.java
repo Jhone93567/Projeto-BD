@@ -1,5 +1,6 @@
 package br.inatel.DAO;
 
+import br.inatel.Model.Capitao;
 import br.inatel.Model.Coordenador;
 
 import java.sql.SQLException;
@@ -85,5 +86,28 @@ public class CoordenadorDAO extends ConnectionDAO {
         }
 
         return lista;
+    }
+
+    public Coordenador selectById(int id) {
+        connectToDb();
+        Coordenador c = null;
+
+        String sql = "SELECT * FROM Coordenadores WHERE id = ?";
+
+        try{
+            pst = con.prepareStatement(sql);
+            pst.setInt(1,id);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                c = new Coordenador(
+                        rs.getInt("id"),
+                        rs.getString("Nome")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar por ID" + e.getMessage());
+        }
+
+        return c;
     }
 }

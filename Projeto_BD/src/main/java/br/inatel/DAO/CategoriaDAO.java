@@ -1,5 +1,6 @@
 package br.inatel.DAO;
 
+import br.inatel.Model.Capitao;
 import br.inatel.Model.Categoria;
 
 import java.sql.SQLException;
@@ -92,4 +93,31 @@ public class CategoriaDAO extends ConnectionDAO {
 
         return lista;
     }
+
+    public Categoria selectById(int id) {
+        connectToDb();
+        Categoria c = null;
+
+        String sql = "SELECT * FROM Categorias WHERE id = ?";
+
+        try{
+            pst = con.prepareStatement(sql);
+            pst.setInt(1,id);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                c = new Categoria(
+                        rs.getInt("id"),
+                        rs.getString("Nome"),
+                        rs.getInt("capitaoId"),
+                        rs.getInt("coordenadorId")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar por ID" + e.getMessage());
+        }
+
+        return c;
+    }
+
+
 }

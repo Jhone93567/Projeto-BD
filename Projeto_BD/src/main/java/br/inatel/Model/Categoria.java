@@ -8,6 +8,12 @@ public class Categoria {
 
     public Categoria() {}
 
+    public Categoria(String nome, int capitaoId, int coordenadorId) {
+        this.nome = nome;
+        this.capitaoId = capitaoId;
+        this.coordenadorId = coordenadorId;
+    }
+
     public Categoria(int id, String nome, int capitaoId, int coordenadorId) {
         this.id = id;
         this.nome = nome;

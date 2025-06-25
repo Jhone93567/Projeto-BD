@@ -6,6 +6,10 @@ public class Coordenador {
 
     public Coordenador() {}
 
+    public Coordenador(String nome) {
+        this.nome = nome;
+    }
+
     public Coordenador(int id, String nome) {
         this.id = id;
         this.nome = nome;
